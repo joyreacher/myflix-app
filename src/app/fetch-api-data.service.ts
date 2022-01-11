@@ -44,4 +44,14 @@ export class FetchApiDataService {
       .post(apiUrl + '/login', userDetails)
       .pipe(catchError(this.handleError))
   }
+  
+  /**
+   * @function getAllMovies
+   * @returns 
+   */
+  public getAllMovies(): Observable<any>{
+    return this.http
+      .get(apiUrl + '/movies',)
+      .pipe(catchError(this.handleError))
+  }
 }
