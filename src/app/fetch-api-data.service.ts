@@ -26,7 +26,7 @@ export class FetchApiDataService {
   }
   /**
    * 
-   * @param userRegistration 
+   * @param userDetails 
    * @returns 
    */
   public userRegistration(userDetails: any): Observable<any> {
@@ -36,7 +36,7 @@ export class FetchApiDataService {
   }
   /**
    * 
-   * @param userLogin 
+   * @param userDetails 
    * @returns 
    */
   public userLogin(userDetails: any): Observable<any>{
@@ -53,5 +53,110 @@ export class FetchApiDataService {
     return this.http
       .get(apiUrl + '/movies',)
       .pipe(catchError(this.handleError))
+  }
+  
+  /**
+   * 
+   * @param movieTitle 
+   * @returns 
+   */
+  public getOneMovie(movieTitle: any): Observable<any>{
+    return this.http.get(apiUrl + 'movies', movieTitle).pipe(
+      catchError(this.handleError)
+    )
+  }
+  
+  /**
+   * 
+   * @param directorName 
+   * @returns 
+   */
+  public getDirector(directorName: any): Observable<any>{
+    return this.http.get(apiUrl + 'directors', directorName).pipe(
+      catchError(this.handleError)
+    )
+  }
+  
+  /**
+   * 
+   * @param genreName \
+   * @returns 
+   */
+  public getGenre(genreName: any): Observable<any>{
+    return this.http
+      .get(apiUrl + '/genre/', genreName)
+      .pipe(catchError(this.handleError)
+    )
+  }
+  
+  /**
+   * 
+   * @param userName 
+   * @returns 
+   */
+  public getUser(userName: any): Observable<any>{
+    return this.http
+      .get(apiUrl + 'user', userName)
+      .pipe(catchError(this.handleError)
+    )
+  }
+  
+  /**
+   * 
+   * @param userName
+   * @returns 
+   */
+  public getFavoriteMovies(userName: any): Observable<any>{
+    return this.http.get(apiUrl + 'user', userName).pipe(
+      // user/[username] pulls user object
+      catchError(this.handleError)
+    )
+  }
+  
+  /**
+   * 
+   * @param userName 
+   * @param movieData 
+   * @returns 
+   */
+  public addFavoriteMovie(userName: any, movieData: any): Observable<any>{
+    return this.http
+      .post(apiUrl + '/users/mymovies/add', userName, movieData)
+      .pipe(catchError(this.handleError)
+    )
+  }
+  
+  /**
+   * 
+   * @param userName 
+   * @returns 
+   */
+  public editUser(userName: any): Observable<any>{
+    return this.http.post(apiUrl + 'user', userName).pipe(
+      catchError(this.handleError)
+    )
+  }
+  
+  /**
+   * 
+   * @param userName 
+   * @returns 
+   */
+  public deleteUser(userName: any): Observable<any>{
+    return this.http.post(apiUrl + 'users/unregister', userName).pipe(
+      catchError(this.handleError)
+    )
+  }
+  
+  /**
+   * 
+   * @param userName 
+   * @param movieTitle 
+   * @returns 
+   */
+  public deleteFavoriteMovie(userName: any, movieTitle: any): Observable<any>{
+    return this.http.post(apiUrl + 'movies/mymovies/delete', userName, movieTitle).pipe(
+      catchError(this.handleError)
+    )
   }
 }
