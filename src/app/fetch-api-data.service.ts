@@ -25,4 +25,9 @@ export class FetchApiDataService {
     }
   }
   
+  public userRegistration(userDetails: any): Observable<any> {
+    return this.http
+      .post(apiUrl + '/users/', userDetails)
+      .pipe(catchError(this.handleError))
+  }
 }
