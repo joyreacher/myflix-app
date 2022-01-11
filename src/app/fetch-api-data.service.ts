@@ -24,10 +24,24 @@ export class FetchApiDataService {
       )
     }
   }
-  
+  /**
+   * 
+   * @param userRegistration 
+   * @returns 
+   */
   public userRegistration(userDetails: any): Observable<any> {
     return this.http
       .post(apiUrl + '/users/', userDetails)
+      .pipe(catchError(this.handleError))
+  }
+  /**
+   * 
+   * @param userLogin 
+   * @returns 
+   */
+  public userLogin(userDetails: any): Observable<any>{
+    return this.http
+      .post(apiUrl + '/login', userDetails)
       .pipe(catchError(this.handleError))
   }
 }
