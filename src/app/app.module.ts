@@ -14,12 +14,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { UserRegisterFormComponent } from './components/user-register-form/user-register-form.component';
+import { UserLoginFormComponent } from './components/user-login-form/user-login-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserRegisterFormComponent
+    UserRegisterFormComponent,
+    UserLoginFormComponent
   ],
   imports: [
     BrowserModule,
