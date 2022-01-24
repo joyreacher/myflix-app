@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserRegisterFormComponent } from './components/user-register-form/user-register-form.component';
-import { Grid } from './interface/Grid';
+import { UserLoginFormComponent } from './components/user-login-form/user-login-form.component';
+// import { Grid } from './interface/Grid';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -19,6 +20,10 @@ export class AppComponent {
     })
   }
 
-  title = 'myFlix-app';
-  tiles = { text: 'Welcom to Myflix'}
+  openUserLoginDialog(): void{
+    this.dialog.open(UserLoginFormComponent, {
+      width: '280px'
+    })
+  }
+  title = 'Welcome to MyFlix-app';
 }
