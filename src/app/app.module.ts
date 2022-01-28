@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { FormsModule } from '@angular/forms'
 import {MatGridListModule} from '@angular/material/grid-list'; 
+import { MatIconModule } from '@angular/material/icon'
 
 import { AppComponent } from './app.component';
 import { UserRegisterFormComponent } from './components/user-register-form/user-register-form.component';
@@ -39,7 +40,8 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
     MatFormFieldModule,
     MatSnackBarModule,
     FormsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
