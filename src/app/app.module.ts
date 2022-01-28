@@ -18,6 +18,9 @@ import { UserRegisterFormComponent } from './components/user-register-form/user-
 import { UserLoginFormComponent } from './components/user-login-form/user-login-form.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserUpdateFormComponent } from './components/user-update-form/user-update-form.component';
+import { UserDeleteFormComponent } from './components/user-delete-form/user-delete-form.component';
 
 
 @NgModule({
@@ -26,7 +29,10 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
     UserRegisterFormComponent,
     UserLoginFormComponent,
     MovieCardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    UserProfileComponent,
+    UserUpdateFormComponent,
+    UserDeleteFormComponent
   ],
   imports: [
     BrowserModule,
