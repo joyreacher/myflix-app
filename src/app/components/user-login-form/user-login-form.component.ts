@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 // import angular material
 import { MatDialogRef } from '@angular/material/dialog'
 import { MatSnackBar } from '@angular/material/snack-bar'
@@ -15,14 +16,15 @@ export class UserLoginFormComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public router: Router
   ) { }
 
   ngOnInit(): void {
   }
-
   loginUser(): void{
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
+      this.router.navigate(['movies'])
       localStorage.setItem('user', result.user.username),
       localStorage.setItem('token', result.token),
       this.dialogRef.close()

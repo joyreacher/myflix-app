@@ -11,11 +11,13 @@ import { MatDialogModule } from '@angular/material/dialog'
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { FormsModule } from '@angular/forms'
 import {MatGridListModule} from '@angular/material/grid-list'; 
+import { MatIconModule } from '@angular/material/icon'
 
 import { AppComponent } from './app.component';
 import { UserRegisterFormComponent } from './components/user-register-form/user-register-form.component';
 import { UserLoginFormComponent } from './components/user-login-form/user-login-form.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
+import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
     AppComponent,
     UserRegisterFormComponent,
     UserLoginFormComponent,
-    MovieCardComponent
+    MovieCardComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { MovieCardComponent } from './components/movie-card/movie-card.component
     MatFormFieldModule,
     MatSnackBarModule,
     FormsModule,
-    MatGridListModule
+    MatGridListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
