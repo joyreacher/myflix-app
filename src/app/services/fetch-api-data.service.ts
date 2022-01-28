@@ -9,6 +9,7 @@ const httpOptions = {headers: new HttpHeaders(
     Authorization: 'Bearer ' + token,
   }
   )};
+const apiUrl = 'https://cinema-barn.herokuapp.com/'
 @Injectable({
   providedIn: 'root'
 })
@@ -35,7 +36,7 @@ export class FetchApiDataService {
    */
   public userRegistration(userDetails: any): Observable<any> {
     return this.http
-      .post(apiUrl + '/users/', userDetails)
+      .post(apiUrl + 'users/', userDetails)
       .pipe(catchError(this.handleError))
   }
   /**
@@ -45,7 +46,7 @@ export class FetchApiDataService {
    */
   public userLogin(userDetails: any): Observable<any>{
     return this.http
-      .post(apiUrl + '/login', userDetails)
+      .post(apiUrl + 'login', userDetails)
       .pipe(catchError(this.handleError))
   }
   
