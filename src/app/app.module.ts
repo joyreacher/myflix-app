@@ -18,6 +18,7 @@ import { UserRegisterFormComponent } from './components/user-register-form/user-
 import { UserLoginFormComponent } from './components/user-login-form/user-login-form.component';
 import { MovieCardComponent } from './components/movie-card/movie-card.component';
 import { WelcomePageComponent } from './components/welcome-page/welcome-page.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
     UserRegisterFormComponent,
     UserLoginFormComponent,
     MovieCardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
