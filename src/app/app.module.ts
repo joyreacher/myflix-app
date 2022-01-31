@@ -22,6 +22,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { UserUpdateFormComponent } from './components/user-update-form/user-update-form.component';
 import { UserDeleteFormComponent } from './components/user-delete-form/user-delete-form.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     UserProfileComponent,
     UserUpdateFormComponent,
     UserDeleteFormComponent,
-    MainPageComponent
+    MainPageComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
