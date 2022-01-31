@@ -1,4 +1,12 @@
-<mat-grid-list cols="1" rowHeight="50vh">
+<mat-grid-list cols="2" rowHeight="50vh">
+  <mat-grid-tile>
+    <mat-card>
+      <h1>Hello! {{getUserInfo().firstName}}</h1>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    User card
+  </mat-grid-tile>
   <mat-grid-tile>
     <button
       mat-raised-button
@@ -8,6 +16,8 @@
     >
       Update
     </button>
+  </mat-grid-tile>
+  <mat-grid-tile>
     <button
       mat-raised-button
       (click)="openDeleteUserDialog()"
@@ -15,7 +25,7 @@
     >
       Delete
     </button>
-    
   </mat-grid-tile>
+  
   
 </mat-grid-list>

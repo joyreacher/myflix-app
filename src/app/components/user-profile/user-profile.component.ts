@@ -28,4 +28,11 @@ export class UserProfileComponent implements OnInit {
       width: '300px'
     })
   }
+
+  getUserInfo(): any{
+    const user = {
+      firstName: localStorage.getItem('user')
+    }
+    return user
+  }
 }
