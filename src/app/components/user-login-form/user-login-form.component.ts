@@ -24,7 +24,6 @@ export class UserLoginFormComponent implements OnInit {
   }
   loginUser(): void{
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
-      this.router.navigate(['movies'])
       localStorage.setItem('user', result.user.username),
       localStorage.setItem('token', result.token),
       this.dialogRef.close()
@@ -38,5 +37,6 @@ export class UserLoginFormComponent implements OnInit {
         duration:2000
       })
     })
+    this.router.navigate(['movies'])
   }
 }
