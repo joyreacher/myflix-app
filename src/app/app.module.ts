@@ -21,6 +21,7 @@ import { WelcomePageComponent } from './components/welcome-page/welcome-page.com
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserUpdateFormComponent } from './components/user-update-form/user-update-form.component';
 import { UserDeleteFormComponent } from './components/user-delete-form/user-delete-form.component';
+import { MainPageComponent } from './pages/main-page/main-page.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { UserDeleteFormComponent } from './components/user-delete-form/user-dele
     WelcomePageComponent,
     UserProfileComponent,
     UserUpdateFormComponent,
-    UserDeleteFormComponent
+    UserDeleteFormComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
