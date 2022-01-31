@@ -1,36 +1,19 @@
-<div style="display: flex;">
-  <mat-card *ngFor="let movie of movies; let i=index;">
-    <mat-card-header>
-      <mat-card-title>
+<mat-grid-list cols="2" rowHeight="50em" gutterSize="50">
+  <mat-grid-tile class="movie-card--tile" *ngFor="let movie of movies; let i=index;"
+    style="background-image: url({{movie.ImagePath}});background-repeat: no-repeat;background-size: cover;">
+    <mat-grid-tile-header>
+      <h1>{{ movie.Title }}</h1>
+    </mat-grid-tile-header>
+    <mat-card class="movie-card--card">
+      <mat-card-header>
         {{ movie.Title }}
-      </mat-card-title>
-      <mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="movie-card--content">
         {{ movie.Description }}
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-dialog-content>
-      <img src="{{movie.ImagePath}}" alt="movie poster" />
-      <mat-card-actions>
-        <button
-          mat-button
-          color="primary"
-        >
-          Genre
-        </button>
-        <button
-          mat-button
-          color="primary"
-        >
-          Director
-        </button>
-        <button
-          mat-button
-          color="primary"
-        >
-          Synopsis
-        </button>
-        <mat-icon>favorite_border</mat-icon>
-      </mat-card-actions>
-    </mat-dialog-content>
-  </mat-card>
-</div>
+      </mat-card-content>
+      <mat-card-footer>
+        {{ movie.Director.Name }}
+      </mat-card-footer>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
