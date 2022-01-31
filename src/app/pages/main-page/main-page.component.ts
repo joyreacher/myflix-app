@@ -12,4 +12,8 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getUser(): any{
+    console.log(localStorage.getItem('user'))
+    return localStorage.getItem('user');
+  }
 }
