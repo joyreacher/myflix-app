@@ -12,8 +12,12 @@ export class MainPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getUser()
   }
-
+  /**
+   * 
+   * @returns string - username to display
+   */
   getUser(): any{
     if(!localStorage.getItem('token')){
       this.router.navigate(['welcome'])
