@@ -3,17 +3,13 @@ import { catchError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
 import { Observable, throwError  } from 'rxjs';
 import { map } from 'rxjs/operators';
-const token = localStorage.getItem('token')
-const httpOptions = {headers: new HttpHeaders(
-  {
-    Authorization: 'Bearer ' + token,
-  }
-  )};
+
 const apiUrl = 'https://cinema-barn.herokuapp.com/'
 @Injectable({
   providedIn: 'root'
 })
 export class FetchApiDataService {
+  
 
   constructor(private http: HttpClient) { }
   
@@ -24,9 +20,16 @@ export class FetchApiDataService {
       console.error(
         `Error Status code ${error.status}, ` + `Error body is: ${error.error}`
       )
-      return throwError(
-        'Something went wrong'
-      )
+      if(!error.error.errors){
+        return throwError(
+          error.error
+        )
+      }else{
+        return throwError(
+          error.error.errors[0].msg
+        )
+      }
+      
     }
   }
   /**
@@ -56,7 +59,11 @@ export class FetchApiDataService {
    */
   public getAllMovies(): Observable<any> {
     return this.http
-    .get(apiUrl + 'movies', httpOptions)
+    .get(apiUrl + 'movies', {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }
+      )})
     .pipe(catchError(this.handleError));
   }
   
