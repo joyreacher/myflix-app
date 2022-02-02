@@ -20,9 +20,16 @@ export class FetchApiDataService {
       console.error(
         `Error Status code ${error.status}, ` + `Error body is: ${error.error}`
       )
-      return throwError(
-        'Something went wrong'
-      )
+      if(!error.error.errors){
+        return throwError(
+          error.error
+        )
+      }else{
+        return throwError(
+          error.error.errors[0].msg
+        )
+      }
+      
     }
   }
   /**
