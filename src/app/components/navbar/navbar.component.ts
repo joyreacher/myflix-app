@@ -7,7 +7,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
+  
   constructor(
     public router: Router
   ) { }
@@ -17,5 +17,15 @@ export class NavbarComponent implements OnInit {
 
   route(page: string): any{
     return this.router.navigate([`${page}`])
+  }
+
+  signOut(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
+    this.router.navigate(['welcome'])
+  }
+
+  isUserLoggedIn(): any{
+    return localStorage.getItem('token');
   }
 }
