@@ -19,7 +19,7 @@
           matInput
           [(ngModel)]="userData.Password"
           placeholder="Password"
-          type="text"
+          type="password"
           name="Password"
           required
         >
@@ -35,9 +35,17 @@
         >
       </mat-form-field>
       <mat-form-field>
+        <mat-card class="demo-inline-calendar-card">
+          <mat-calendar
+          matInput
+          (click)="returnDate()"
+          placeholder="Birthday"
+          [(selected)]="selected"></mat-calendar>
+        </mat-card>
+        <!-- <p>Selected date: {{selected}}</p> -->
         <input 
           matInput
-          [(ngModel)]="userData.Birthday"
+        [(ngModel)]="userData.Birthday"
           placeholder="Birthday"
           type="text"
           name="Birthday"
