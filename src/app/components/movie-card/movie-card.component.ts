@@ -10,6 +10,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { GenreModalComponent } from '../genre-modal/genre-modal.component';
 import { DirectorModalComponent } from '../director-modal/director-modal.component';
+import { SynopsisModalComponent } from '../synopsis-modal/synopsis-modal.component';
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -105,4 +106,16 @@ export class MovieCardComponent implements OnInit {
     })
   }
 
+  openSynopsisDialog(movieTitle:any, movieDesc:any, movieDirector:any):any{
+    this.dialog.open(SynopsisModalComponent, {
+      data: {
+        "movie": {
+          title: movieTitle,
+          description: movieDesc,
+          director: movieDirector
+        }
+      },
+      width: '400px'
+    })
+  }
 }
