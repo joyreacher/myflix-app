@@ -1,1 +1,72 @@
-<p>user-update-form works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Sign up</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form>
+      <mat-form-field>
+        <input 
+          matInput
+          [(ngModel)]="updatedUserData.Username"
+          placeholder="Username"
+          type="text"
+          name="Username"
+          
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input 
+          matInput
+          [(ngModel)]="updatedUserData.Password"
+          placeholder="Password"
+          type="password"
+          name="Password"
+          
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input 
+          matInput
+          [(ngModel)]="updatedUserData.Email"
+          placeholder="Email"
+          type="text"
+          name="Email"
+          
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <mat-card class="demo-inline-calendar-card">
+          <mat-calendar
+          (click)="returnDate()"
+          placeholder="Birthday"
+          [(selected)]="selected"></mat-calendar>
+        </mat-card>
+        <!-- <p>Selected date: {{selected}}</p> -->
+        <input 
+          matInput
+        [(ngModel)]="updatedUserData.Birthday"
+          placeholder="Birthday"
+          type="text"
+          name="Birthday"
+          
+        >
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      mat-raised-button
+      (click)="updateUser()"
+      color="primary"
+    >
+      Update My Profile!🙂 
+    </button>
+    <button
+      mat-raised-button
+      (click)="cancelUpdate()"
+      color="primary"
+    >
+      Cancel😟 
+    </button>
+  </mat-card-actions>
+</mat-card>
