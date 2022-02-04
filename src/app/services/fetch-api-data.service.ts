@@ -108,7 +108,11 @@ export class FetchApiDataService {
    */
   public getUser(userName: any): Observable<any>{
     return this.http
-      .get(apiUrl + 'user', userName)
+      .get(apiUrl + 'user/'+ userName, {headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        }
+        )})
       .pipe(catchError(this.handleError)
     )
   }
@@ -140,11 +144,22 @@ export class FetchApiDataService {
   
   /**
    * 
-   * @param userName 
+   * @param user
    * @returns 
    */
-  public editUser(userName: any): Observable<any>{
-    return this.http.post(apiUrl + 'user', userName).pipe(
+  public editUser(user: any): Observable<any>{
+    return this.http
+    .put(apiUrl + 'users/' + localStorage.getItem('user'), {
+      Username:user.userName,
+      Password: user.password,
+      Email: user.email,
+      Birthday:user.birthday
+      }, {headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        }
+        )})
+    .pipe(
       catchError(this.handleError)
     )
   }
@@ -154,8 +169,12 @@ export class FetchApiDataService {
    * @param userName 
    * @returns 
    */
-  public deleteUser(userName: any): Observable<any>{
-    return this.http.post(apiUrl + 'users/unregister', userName).pipe(
+  public deleteUser(user: any): Observable<any>{
+    return this.http.post(apiUrl + 'users/unregister', user, {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }
+      )}).pipe(
       catchError(this.handleError)
     )
   }
