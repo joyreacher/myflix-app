@@ -14,6 +14,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon'
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { UserRegisterFormComponent } from './components/user-register-form/user-register-form.component';
@@ -56,6 +57,7 @@ import { FetchApiDataService } from './services/fetch-api-data.service';
     MatGridListModule,
     MatIconModule,
     MatDatepickerModule,
+    MatProgressSpinnerModule,
     MatNativeDateModule
   ],
   providers: [FetchApiDataService],

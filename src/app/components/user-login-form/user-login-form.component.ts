@@ -13,6 +13,7 @@ import { FetchApiDataService } from '../../services/fetch-api-data.service'
 })
 export class UserLoginFormComponent implements OnInit {
   @Input() userData = { Username: '', Password: '' }
+  showSpinner = false
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
@@ -23,7 +24,9 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
   loginUser(): void{
+    this.showSpinner = true
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {
+      this.showSpinner = false
       this.dialogRef.close()
       localStorage.setItem('user', result.user.username),
       localStorage.setItem('token', result.token),
@@ -33,6 +36,13 @@ export class UserLoginFormComponent implements OnInit {
         duration:2000
       })
       this.router.navigate(['home'])
+    },(error) =>{
+      this.showSpinner = false
+      this.snackBar.open(
+        `${error.message}`,
+        "OK", {
+        duration:5000
+      })
     })
   }
 }
