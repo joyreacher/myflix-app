@@ -43,9 +43,6 @@ export class WelcomePageComponent implements OnInit {
   routeToHomeView(): void{
     if(localStorage.getItem('token')){
       this.router.navigate(['home'])
-      // this.fetchApiData.getAllMovies().subscribe((response: any) => {
-      //   this.router.navigate(['home'])
-      // })
     }
   }
 
