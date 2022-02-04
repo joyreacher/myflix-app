@@ -118,4 +118,16 @@ export class MovieCardComponent implements OnInit {
       width: '400px'
     })
   }
+  
+  handleFavorites(title: string): any{
+    let username = localStorage.getItem('user')
+    // console.log(username, title)
+    const data = {
+      Username: username,
+      Title: title
+    }
+    this.fetchApiData.addFavoriteMovie(data).subscribe((response) =>{
+      console.log(response)
+    })
+  }
 }

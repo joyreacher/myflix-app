@@ -135,9 +135,13 @@ export class FetchApiDataService {
    * @param movieData 
    * @returns 
    */
-  public addFavoriteMovie(userName: any, movieData: any): Observable<any>{
+  public addFavoriteMovie(data: any): Observable<any>{
     return this.http
-      .post(apiUrl + '/users/mymovies/add', userName, movieData)
+      .post(apiUrl + 'users/mymovies/add', data, {headers: new HttpHeaders(
+        {
+          Authorization: 'Bearer ' + localStorage.getItem('token'),
+        }
+        )})
       .pipe(catchError(this.handleError)
     )
   }

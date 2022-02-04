@@ -45,7 +45,19 @@
           >
             Synopsis
           </button>
-          <mat-icon>favorite_border</mat-icon>
+          <button 
+            aria-label="fav"
+            (click)="handleFavorites(movie.Title)"
+            >
+              <mat-icon>favorite_border</mat-icon>
+          </button>
+          <!-- <button
+            aria-label="unfav"
+            (click)="handleFavorites('un-favorite')"
+          >
+            <mat-icon>favorite_fill</mat-icon>
+          </button> -->
+          
         </mat-card-actions>
       </div>
       <mat-card-footer class="movie-card--footer">
