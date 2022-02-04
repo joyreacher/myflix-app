@@ -19,7 +19,7 @@
           matInput
           [(ngModel)]="userData.Password"
           placeholder="Password"
-          type="text"
+          type="password"
           name="Password"
           required
         >
@@ -35,9 +35,15 @@
         >
       </mat-form-field>
       <mat-form-field>
+          <mat-calendar
+          matInput
+          (click)="returnDate()"
+          placeholder="Birthday"
+          [(selected)]="selected"></mat-calendar>
+        
         <input 
           matInput
-          [(ngModel)]="userData.Birthday"
+        [(ngModel)]="userData.Birthday"
           placeholder="Birthday"
           type="text"
           name="Birthday"
@@ -54,5 +60,6 @@
     >
       Sign up
     </button>
+    <mat-spinner *ngIf="showSpinner"></mat-spinner>
   </mat-card-actions>
 </mat-card>

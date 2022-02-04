@@ -12,6 +12,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { FormsModule } from '@angular/forms'
 import {MatGridListModule} from '@angular/material/grid-list'; 
 import { MatIconModule } from '@angular/material/icon'
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { UserRegisterFormComponent } from './components/user-register-form/user-register-form.component';
@@ -24,6 +27,7 @@ import { UserDeleteFormComponent } from './components/user-delete-form/user-dele
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
+import { FetchApiDataService } from './services/fetch-api-data.service';
 
 @NgModule({
   declarations: [
@@ -51,9 +55,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatSnackBarModule,
     FormsModule,
     MatGridListModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatProgressSpinnerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [FetchApiDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

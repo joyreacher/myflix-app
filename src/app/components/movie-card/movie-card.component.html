@@ -1,4 +1,5 @@
 <mat-grid-list cols="2" rowHeight="50em" gutterSize="50">
+  <mat-spinner *ngIf="showSpinner"></mat-spinner>
   <mat-grid-tile class="movie-card--tile" *ngFor="let movie of movies; let i=index;"
     style="background-image: url({{movie.ImagePath}});background-repeat: no-repeat;background-size: cover;">
     <mat-grid-tile-header>

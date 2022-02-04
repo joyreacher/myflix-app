@@ -12,7 +12,7 @@ import { FetchApiDataService } from '../../services/fetch-api-data.service'
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-
+showSpinner = false
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -20,10 +20,11 @@ export class UserProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getUser()
+    this.getUserCredentials()
+    this.getUserInfo()
   }
 
-  getUser(): any{
+  getUserCredentials(): any{
     if(!localStorage.getItem('token')){
       this.router.navigate(['welcome'])
     }
@@ -42,10 +43,23 @@ export class UserProfileComponent implements OnInit {
     })
   }
 
+  user = {
+    userName: localStorage.getItem('user'),
+    token: localStorage.getItem('token'),
+    email:'',
+    birthday: '',
+    favorite_movies: []
+  }
   getUserInfo(): any{
-    const user = {
-      firstName: localStorage.getItem('user')
-    }
-    return user
+    this.showSpinner = true
+    return this.fetchApiData.getUser(this.user.userName).subscribe((result) =>{
+      this.showSpinner = false
+      let date = new Date(result.birthday)
+      // date.toTimeString()
+      this.user.userName = result.username,
+      this.user.email = result.email,
+      this.user.birthday = date.toLocaleDateString(),
+      this.user.favorite_movies = result.favorite_movies
+    })
   }
 }

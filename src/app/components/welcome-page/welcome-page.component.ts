@@ -24,13 +24,13 @@ export class WelcomePageComponent implements OnInit {
   
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegisterFormComponent, {
-      width: '280px'
+      width: '300px'
     })
   }
 
   openUserLoginDialog(): void{
     this.dialog.open(UserLoginFormComponent, {
-      width: '280px'
+      width: '300px'
     })
   }
   
@@ -42,11 +42,10 @@ export class WelcomePageComponent implements OnInit {
 
   routeToHomeView(): void{
     if(localStorage.getItem('token')){
-      console.log('there is a token')
-      this.fetchApiData.getAllMovies().subscribe((response: any) => {
-        console.log(response)
-        this.router.navigate(['home'])
-      })
+      this.router.navigate(['home'])
+      // this.fetchApiData.getAllMovies().subscribe((response: any) => {
+      //   this.router.navigate(['home'])
+      // })
     }
   }
 
