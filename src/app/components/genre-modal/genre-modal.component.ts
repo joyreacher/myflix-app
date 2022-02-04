@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog'
 
 export interface DialogData {
   genre: any
-  image: any
+  director: any
 }
 @Component({
   selector: 'app-genre-modal',
@@ -21,6 +21,6 @@ export class GenreModalComponent implements OnInit {
   }
 
   movies(){
-    // console.log(this.data.genre)
+    console.log(this.data.director)
   }
 }

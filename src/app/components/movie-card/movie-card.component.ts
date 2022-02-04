@@ -9,6 +9,7 @@ import {
 
 import { MatDialog } from '@angular/material/dialog';
 import { GenreModalComponent } from '../genre-modal/genre-modal.component';
+import { DirectorModalComponent } from '../director-modal/director-modal.component';
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -86,13 +87,21 @@ export class MovieCardComponent implements OnInit {
     }
   }
 
-  openGenreDialog(genre:any, image:any):any{
+  openGenreDialog(genre:any):any{
     this.dialog.open(GenreModalComponent, {
       data:{
-        "genre":genre,
-        "image":image
+        "genre":genre
       },
       width:'400px',
+    })
+  }
+
+  openDirectorDialog(director:any):any{
+    this.dialog.open(DirectorModalComponent, {
+      data: {
+        "director": director
+      },
+      width: '400px'
     })
   }
 
