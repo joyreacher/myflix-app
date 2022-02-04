@@ -31,6 +31,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FetchApiDataService } from './services/fetch-api-data.service';
 import { GenreModalComponent } from './components/genre-modal/genre-modal.component';
 import { DirectorModalComponent } from './components/director-modal/director-modal.component';
+import { SynopsisModalComponent } from './components/synopsis-modal/synopsis-modal.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { DirectorModalComponent } from './components/director-modal/director-mod
     MainPageComponent,
     NavbarComponent,
     GenreModalComponent,
-    DirectorModalComponent
+    DirectorModalComponent,
+    SynopsisModalComponent
   ],
   imports: [
     BrowserModule,
