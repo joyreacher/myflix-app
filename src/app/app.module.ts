@@ -30,6 +30,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { FetchApiDataService } from './services/fetch-api-data.service';
 import { GenreModalComponent } from './components/genre-modal/genre-modal.component';
+import { DirectorModalComponent } from './components/director-modal/director-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { GenreModalComponent } from './components/genre-modal/genre-modal.compon
     UserDeleteFormComponent,
     MainPageComponent,
     NavbarComponent,
-    GenreModalComponent
+    GenreModalComponent,
+    DirectorModalComponent
   ],
   imports: [
     BrowserModule,
