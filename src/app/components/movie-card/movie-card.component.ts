@@ -6,6 +6,9 @@ import {
   BreakpointObserver,
   Breakpoints,
 } from '@angular/cdk/layout';
+
+import { MatDialog } from '@angular/material/dialog';
+import { GenreModalComponent } from '../genre-modal/genre-modal.component';
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -25,6 +28,7 @@ export class MovieCardComponent implements OnInit {
     [Breakpoints.XLarge, 'XLarge'],
   ])
   constructor(
+    public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
     public breakpointObserver: BreakpointObserver
   ) {
@@ -80,6 +84,16 @@ export class MovieCardComponent implements OnInit {
         this.breakpoint = 4
         break
     }
+  }
+
+  openGenreDialog(genre:any, image:any):any{
+    this.dialog.open(GenreModalComponent, {
+      data:{
+        "genre":genre,
+        "image":image
+      },
+      width:'400px',
+    })
   }
 
 }
