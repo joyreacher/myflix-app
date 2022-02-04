@@ -12,7 +12,7 @@ import { FetchApiDataService } from '../../services/fetch-api-data.service'
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-
+showSpinner = false
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -51,7 +51,9 @@ export class UserProfileComponent implements OnInit {
     favorite_movies: []
   }
   getUserInfo(): any{
+    this.showSpinner = true
     return this.fetchApiData.getUser(this.user.userName).subscribe((result) =>{
+      this.showSpinner = false
       let date = new Date(result.birthday)
       // date.toTimeString()
       this.user.userName = result.username,

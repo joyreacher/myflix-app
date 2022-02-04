@@ -12,6 +12,7 @@ import { FetchApiDataService } from '../../services/fetch-api-data.service'
 export class UserRegisterFormComponent implements OnInit {
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' }
   selected: Date | '';
+  showSpinner = false
   constructor(
     public fetchApiData: FetchApiDataService,
     // Material dialog uses form compontnet
@@ -23,7 +24,9 @@ export class UserRegisterFormComponent implements OnInit {
   }
 
   registerUser(): void {
+    this.showSpinner = true
     this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
+      this.showSpinner = false
       // successful registration
       this.dialogRef.close()
       this.snackBar.open(
@@ -31,12 +34,13 @@ export class UserRegisterFormComponent implements OnInit {
         'OK', {
         duration: 5000
       });
-    }, (result) => {
-      console.log(result)
+    }, (error) => {
+      this.showSpinner = false
+      console.log(error)
       this.snackBar.open(
-        result,
+        `${error}`,
         'OK', {
-        duration: 2000
+        duration: 5000
       })
     })
   }

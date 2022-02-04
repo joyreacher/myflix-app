@@ -7,6 +7,7 @@ import { FetchApiDataService } from 'src/app/services/fetch-api-data.service';
 })
 export class MovieCardComponent implements OnInit {
   movies: any = []
+  showSpinner = false
   constructor(
     public fetchApiData: FetchApiDataService,
   ) { }
@@ -16,7 +17,9 @@ export class MovieCardComponent implements OnInit {
   }
   
   getMovies(): void {
+    this.showSpinner = true
     this.fetchApiData.getAllMovies().subscribe((response: any) => {
+      this.showSpinner = false
       this.movies = response
       return this.movies
     })
