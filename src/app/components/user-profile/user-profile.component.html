@@ -1,11 +1,20 @@
 <mat-grid-list cols="2" rowHeight="50vh">
   <mat-grid-tile>
     <mat-card>
-      <h1>Hello! {{getUserInfo().firstName}}</h1>
+      <h1>Hello! {{user.userName}}</h1>
+      <h2>{{user.email}}</h2>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
-    User card
+    <p>Birthday: {{user.birthday}}</p>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card *ngFor="let movie of user.favorite_movies; let i=index;">
+      <mat-card-header>{{movie['Title']}}</mat-card-header>
+      <mat-card-content>
+        <img [src]="movie['ImagePath']" />
+      </mat-card-content>
+    </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
     <button
@@ -16,8 +25,6 @@
     >
       Update
     </button>
-  </mat-grid-tile>
-  <mat-grid-tile>
     <button
       mat-raised-button
       (click)="openDeleteUserDialog()"
@@ -26,6 +33,4 @@
       Delete
     </button>
   </mat-grid-tile>
-  
-  
 </mat-grid-list>
