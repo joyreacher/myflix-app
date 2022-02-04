@@ -16,7 +16,7 @@ export class MovieCardComponent implements OnInit {
   currentScreenSize: string
   movies: any = []
   showSpinner = false
-  
+  breakpoint:number
   displayNameMap = new Map([
     [Breakpoints.XSmall, 'XSmall'],
     [Breakpoints.Small, 'Small'],
@@ -42,6 +42,7 @@ export class MovieCardComponent implements OnInit {
           if(result.breakpoints[query]){
             this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown'
             console.log(this.currentScreenSize)
+            this.onResize(this.currentScreenSize)
           }
         }
       })
@@ -58,6 +59,27 @@ export class MovieCardComponent implements OnInit {
       this.movies = response
       return this.movies
     })
+  }
+  
+  onResize(currentScreenSize: string): any{
+    console.log(currentScreenSize)
+    switch(currentScreenSize){
+      case 'XSmall':
+        this.breakpoint = 1
+        break
+      case 'Small':
+        this.breakpoint = 2
+        break
+      case 'Medium':
+        this.breakpoint = 2
+        break
+      case 'Large':
+        this.breakpoint = 3
+        break
+      case 'XLarge':
+        this.breakpoint = 4
+        break
+    }
   }
 
 }
