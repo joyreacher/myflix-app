@@ -190,7 +190,11 @@ export class FetchApiDataService {
    * @returns 
    */
   public deleteFavoriteMovie(userName: any, movieTitle: any): Observable<any>{
-    return this.http.post(apiUrl + 'movies/mymovies/delete', userName, movieTitle).pipe(
+    return this.http.post(apiUrl + 'users/mymovies/delete', {Username:userName,Title: movieTitle}, {headers: new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }
+      )}).pipe(
       catchError(this.handleError)
     )
   }
