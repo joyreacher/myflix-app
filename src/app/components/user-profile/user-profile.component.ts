@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { UserUpdateFormComponent } from '../user-update-form/user-update-form.component';
 import { UserDeleteFormComponent } from '../user-delete-form/user-delete-form.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators'
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { FetchApiDataService } from '../../services/fetch-api-data.service'
 
@@ -12,12 +15,41 @@ import { FetchApiDataService } from '../../services/fetch-api-data.service'
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+destroyed = new Subject<void>()
 showSpinner = false
+currentScreenSize: string
+breakpoint: number
+displayNameMap = new Map([
+  [Breakpoints.XSmall, 'XSmall'],
+  [Breakpoints.Small, 'Small'],
+  [Breakpoints.Medium, 'Medium'],
+  [Breakpoints.Large, 'Large'],
+  [Breakpoints.XLarge, 'XLarge'],
+])
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
-    public router: Router
-  ) { }
+    public router: Router,
+    public breakpointObserver:BreakpointObserver
+  ) {
+    breakpointObserver
+      .observe([
+        Breakpoints.XSmall,
+        Breakpoints.Small,
+        Breakpoints.Medium,
+        Breakpoints.Large,
+        Breakpoints.XLarge,
+      ])
+      .pipe(takeUntil(this.destroyed))
+      .subscribe(result => {
+        for(const query of Object.keys(result.breakpoints)){
+          if(result.breakpoints[query]){
+            this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown'
+            this.onResize(this.currentScreenSize)
+          }
+        }
+      })
+  }
 
   ngOnInit(): void {
     this.getUserCredentials()
@@ -68,5 +100,25 @@ showSpinner = false
       console.log(response)
       window.location.reload()
     })
+  }
+
+  onResize(currentScreenSize: string): any{
+    switch(currentScreenSize){
+      case 'XSmall':
+        this.breakpoint = 1
+        break
+      case 'Small':
+        this.breakpoint = 2
+        break
+      case 'Medium':
+        this.breakpoint = 2
+        break
+      case 'Large':
+        this.breakpoint = 3
+        break
+      case 'XLarge':
+        this.breakpoint = 4
+        break
+    }
   }
 }
