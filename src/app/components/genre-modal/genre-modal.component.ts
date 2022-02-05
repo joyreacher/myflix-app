@@ -17,10 +17,6 @@ export class GenreModalComponent implements OnInit {
     ) { }
   
   ngOnInit(): void {
-    this.movies()
   }
 
-  movies(){
-    console.log(this.data.director)
-  }
 }
