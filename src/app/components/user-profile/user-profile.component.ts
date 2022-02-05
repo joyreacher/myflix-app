@@ -66,13 +66,13 @@ displayNameMap = new Map([
 
   openUpdateUserDialog(): void{
     this.dialog.open(UserUpdateFormComponent, {
-      width: '300px'
+      width: '350px'
     })
   }
 
   openDeleteUserDialog(): void{
     this.dialog.open(UserDeleteFormComponent, {
-      width: '300px'
+      width: '350px'
     })
   }
 

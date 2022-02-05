@@ -35,12 +35,10 @@
         >
       </mat-form-field>
       <mat-form-field>
-        <mat-card class="demo-inline-calendar-card">
           <mat-calendar
           (click)="returnDate(selected)"
           placeholder="Birthday"
           [(selected)]="selected"></mat-calendar>
-        </mat-card>
         <!-- <p>Selected date: {{selected}}</p> -->
         <input 
           matInput
