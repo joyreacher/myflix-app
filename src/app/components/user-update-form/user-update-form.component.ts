@@ -20,12 +20,12 @@ export class UserUpdateFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchApiDate.getUser(localStorage.getItem('user')).subscribe((response) =>{
-      console.log(response)
-      // this.user.username = response.username
+      this.user = response
     })
   }
 
-  returnDate():any{
+  returnDate(dob:any = null):any{
+    console.log(dob)
     let day, month, year
     this.selected = new Date(this.selected)
     day = this.selected.getDate()
@@ -73,77 +73,34 @@ export class UserUpdateFormComponent implements OnInit {
       this.updatedUserData.Birthday = date
       return this.updatedUserData.Birthday
     }
-    return 
+    return false
   }
 
   updateUser(): any{
-    let day, month, year,user ={
-      userName: this.updatedUserData.Username,
+    // If form values are null or empty use the current user value or localStorage
+    let user ={
+      userName: !this.updatedUserData.Username || this.updatedUserData.Username == '' ? localStorage.getItem('user') : this.updatedUserData.Username,
       password: this.updatedUserData.Password,
-      email: this.updatedUserData.Email,
-      birthday: this.updatedUserData.Birthday
+      email: !this.updatedUserData.Email || this.updatedUserData.Email === '' ? this.user.email : this.updatedUserData.Email,
+      birthday: !this.updatedUserData.Birthday || this.updatedUserData.Birthday === '' ? this.user.birthday :this.updatedUserData.Birthday
     }
-    this.selected = new Date(this.selected)
-    day = this.selected.getDate()
-    year = this.selected.getFullYear()
-    switch(this.selected.getMonth()){
-      case 0:
-        month = "January"
-        break
-      case 1:
-        month = "February"
-        break
-      case 2:
-        month = "March"
-        break
-      case 3:
-        month = "April"
-        break
-      case 4:
-        month = "May"
-        break
-      case 5:
-        month = "June"
-        break
-      case 6:
-        month = "July"
-        break
-      case 7:
-        month = "August"
-        break
-      case 8:
-        month = "September"
-        break
-      case 9:
-        month = "October"
-        break
-      case 10:
-        month = "November"
-        break
-      case 11:
-        month = "December"
-        break
+    if(this.returnDate()){
+      this.requestUpdate(user)
     }
-    if(month && day && year){
-      let date = month + '/' + day +'/'+year
-      this.updatedUserData.Birthday = date
-      
-      this.fetchApiDate.editUser(user).subscribe((response) => {
-        console.log(response)
-        this.dialogRef.close()
-        this.snackBar.open(
-          `${response.username}, your profile has been updated.`,
-          'OK', {
-          duration: 5000
-        });
-        window.location.reload()
-      })
-      
-      
-      localStorage.setItem('user', this.updatedUserData.Username)
-      return this.updatedUserData.Birthday
-    }
-    return 
+  }
+
+  requestUpdate(user:any):any{
+    this.fetchApiDate.editUser(user).subscribe((response) => {
+      console.log(response)
+      this.dialogRef.close()
+      this.snackBar.open(
+        `${response.username}, your profile has been updated.`,
+        'OK', {
+        duration: 5000
+      });
+      localStorage.setItem('user', response.username)
+      window.location.reload()
+    })
   }
 
   cancelUpdate():void{
