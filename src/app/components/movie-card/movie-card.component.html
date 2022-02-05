@@ -47,17 +47,19 @@
           </button>
           <button 
             aria-label="fav"
-            (click)="handleFavorites(movie.Title)"
+            (click)="handleFavorites(movie.Title, $event)"
             >
-              <mat-icon>favorite_border</mat-icon>
+              <mat-icon 
+                *ngIf="movie.Favorite"
+                >
+                  favorite_fill
+                </mat-icon>
+              <mat-icon 
+                *ngIf="!movie.Favorite"
+                >
+                favorite_border
+              </mat-icon>
           </button>
-          <!-- <button
-            aria-label="unfav"
-            (click)="handleFavorites('un-favorite')"
-          >
-            <mat-icon>favorite_fill</mat-icon>
-          </button> -->
-          
         </mat-card-actions>
       </div>
       <mat-card-footer class="movie-card--footer">

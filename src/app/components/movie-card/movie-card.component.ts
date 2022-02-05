@@ -119,13 +119,21 @@ export class MovieCardComponent implements OnInit {
     })
   }
   
-  handleFavorites(title: string): any{
+  handleFavorites(title: string, event:any): any{
     let username = localStorage.getItem('user')
-    // console.log(username, title)
     const data = {
       Username: username,
       Title: title
     }
+    if(event.target.textContent === ' favorite_border '){
+      event.target.textContent = 'favorite_fill'
+      return this.addMovie(data)
+    }
+    if(event.target.textContent.includes('_fill')){
+      event.target.textContent = 'favorite_border'
+      return this.removeMovie(data)
+    }
+  }
     this.fetchApiData.addFavoriteMovie(data).subscribe((response) =>{
       console.log(response)
     })
