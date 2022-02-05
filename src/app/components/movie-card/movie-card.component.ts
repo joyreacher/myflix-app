@@ -51,7 +51,6 @@ export class MovieCardComponent implements OnInit {
         for(const query of Object.keys(result.breakpoints)){
           if(result.breakpoints[query]){
             this.currentScreenSize = this.displayNameMap.get(query) ?? 'Unknown'
-            console.log(this.currentScreenSize)
             this.onResize(this.currentScreenSize)
           }
         }
@@ -95,7 +94,6 @@ export class MovieCardComponent implements OnInit {
   }
 
   onResize(currentScreenSize: string): any{
-    console.log(currentScreenSize)
     switch(currentScreenSize){
       case 'XSmall':
         this.breakpoint = 1
@@ -164,7 +162,6 @@ export class MovieCardComponent implements OnInit {
 
   addMovie(data:any):any{
     this.fetchApiData.addFavoriteMovie(data).subscribe((response) =>{
-      console.log(response)
       this.favorite = true
       this.snackbar.open(
         'Added to your favorites',

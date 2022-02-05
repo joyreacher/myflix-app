@@ -20,6 +20,5 @@ export class SynopsisModalComponent implements OnInit {
   }
   movies():any{
     this.movie = this.data.movie
-    console.log(this.movie.title)
   }
 }
