@@ -150,7 +150,7 @@ export class MovieCardComponent implements OnInit {
       Username: username,
       Title: title
     }
-    if(event.target.textContent === ' favorite_border '){
+    if(event.target.textContent.includes('_border')){
       event.target.textContent = 'favorite_fill'
       return this.addMovie(data)
     }
@@ -181,7 +181,6 @@ export class MovieCardComponent implements OnInit {
   }
 
   removeMovie(data:any):any{
-    console.log(data)
     this.fetchApiData.deleteFavoriteMovie(data.Username, data.Title).subscribe((response)=>{
       window.location.reload()
       this.snackbar.open(
