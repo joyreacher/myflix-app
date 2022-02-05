@@ -57,16 +57,39 @@ export class MovieCardComponent implements OnInit {
   ngOnInit(): void {
     this.getMovies()
   }
-  
+
   getMovies(): void {
     this.showSpinner = true
     this.fetchApiData.getAllMovies().subscribe((response: any) => {
       this.showSpinner = false
       this.movies = response
+      this.getUser()
       return this.movies
     })
   }
-  
+
+  getUser(): void{
+    this.fetchApiData.getUser(localStorage.getItem('user')).subscribe((user) =>{
+      this.user = user
+      this.checkFavoriteMovies()
+    })
+  }
+
+  checkFavoriteMovies():any{
+    this.movies = this.movies.map((movie:any) =>{
+      this.user.favorite_movies.forEach((fav:any) => {
+        if(fav._id !== movie._id){
+          return movie
+        }else{
+          movie.Favorite = true
+        }
+      })
+      return movie
+    })
+    // console.log(this.movies)
+    return this.movies
+  }
+
   onResize(currentScreenSize: string): any{
     console.log(currentScreenSize)
     switch(currentScreenSize){
