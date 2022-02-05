@@ -2,6 +2,32 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/joyreacher/myflix-app.git
+```
+
+Go to the project directory
+
+```bash
+  cd myflix
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
 ## Development server
 
 Run `npm run start` for a dev server. Navigate to `http://localhost:8080/`. The app will automatically reload if you change any of the source files.
