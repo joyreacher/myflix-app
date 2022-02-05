@@ -2,21 +2,9 @@
   <mat-grid-tile>
     <mat-card>
       <h1>Hello! {{user.userName}}</h1>
-      <h2>{{user.email}}</h2>
+      <h2>Email: {{user.email}}</h2>
+      <h2>Birthday: {{user.birthday}}</h2>
       <mat-spinner *ngIf="showSpinner"></mat-spinner>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <p>Birthday: {{user.birthday}}</p>
-    <mat-spinner *ngIf="showSpinner"></mat-spinner>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <mat-card *ngFor="let movie of user.favorite_movies; let i=index;">
-      <mat-card-header>{{movie['Title']}}</mat-card-header>
-      <mat-card-content>
-        <img [src]="movie['ImagePath']" />
-        <mat-spinner *ngIf="showSpinner"></mat-spinner>
-      </mat-card-content>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile>
@@ -35,5 +23,22 @@
     >
       Delete
     </button>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div 
+      *ngFor="let movie of user.favorite_movies; let i=index;"
+      >
+      <h1>{{movie['Title']}}</h1>
+      <img [src]="movie['ImagePath'] "/>
+      <mat-spinner *ngIf="showSpinner"></mat-spinner>
+      <div>
+        <button
+          mat-raised-button
+          (click)="deleteFavoriteMovie(user.userName, movie['Title'])"
+        >
+          Delete
+        </button>
+      </div>
+    </div>
   </mat-grid-tile>
 </mat-grid-list>
