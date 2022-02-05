@@ -15,6 +15,7 @@ import { FetchApiDataService } from '../../services/fetch-api-data.service'
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  rows:number
 destroyed = new Subject<void>()
 showSpinner = false
 currentScreenSize: string
@@ -106,18 +107,23 @@ displayNameMap = new Map([
     switch(currentScreenSize){
       case 'XSmall':
         this.breakpoint = 1
+        this.rows = 4
         break
       case 'Small':
-        this.breakpoint = 2
+        this.breakpoint = 1
+        this.rows = 2
         break
       case 'Medium':
         this.breakpoint = 2
+        this.rows = 2
         break
       case 'Large':
         this.breakpoint = 3
+        this.rows = 2
         break
       case 'XLarge':
         this.breakpoint = 4
+        this.rows = 2
         break
     }
   }

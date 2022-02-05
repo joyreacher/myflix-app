@@ -1,35 +1,45 @@
-<mat-grid-list cols="2" rowHeight="50vh">
-  <mat-grid-tile>
-    <mat-card>
-      <h1>Hello! {{user.userName}}</h1>
-      <h2>Email: {{user.email}}</h2>
-      <h2>Birthday: {{user.birthday}}</h2>
-      <mat-spinner *ngIf="showSpinner"></mat-spinner>
-    </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <button
-      mat-raised-button
-      (click)="openUpdateUserDialog()"
-      style="margin-right: 10px"
-      color="primary"
+<!-- <p>the current screen size is {{this.breakpoint}}</p>
+<p>the current screen size is {{this.currentScreenSize}}</p> -->
+<mat-card style="margin-bottom:9em;max-width:50vw;">
+  <h1>Hello! {{user.userName}}</h1>
+  <h2>Email: {{user.email}}</h2>
+  <h2>Birthday: {{user.birthday}}</h2>
+  <button
+    mat-raised-button
+    (click)="openUpdateUserDialog()"
+    style="margin-right: 10px"
+    color="primary"
+  >
+    Update
+  </button>
+  <button
+    mat-raised-button
+    (click)="openDeleteUserDialog()"
+    color="primary"
+  >
+    Delete
+  </button>
+  <mat-spinner *ngIf="showSpinner"></mat-spinner>
+</mat-card>
+
+<mat-grid-list 
+  style="padding:2rem 0"
+  [cols]="breakpoint"
+  rowHeight="2:1" 
+  gutterSize="1"
+  (window:resize)="onResize(this.currentScreenSize)"
+  >
+  <mat-grid-tile 
+    *ngFor="let movie of user.favorite_movies; let i=index;"
+    
+    [rowspan]="rows"
+    [colspan]="1"
+    style="padding:2rem 0"
     >
-      Update
-    </button>
-    <button
-      mat-raised-button
-      (click)="openDeleteUserDialog()"
-      color="primary"
-    >
-      Delete
-    </button>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <div 
-      *ngFor="let movie of user.favorite_movies; let i=index;"
-      >
+    
+    <div>
       <h1>{{movie['Title']}}</h1>
-      <img [src]="movie['ImagePath'] "/>
+      <img [src]="movie['ImagePath']"/>
       <mat-spinner *ngIf="showSpinner"></mat-spinner>
       <div>
         <button
