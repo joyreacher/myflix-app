@@ -8,6 +8,7 @@ import { takeUntil } from 'rxjs/operators'
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { FetchApiDataService } from '../../services/fetch-api-data.service'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-profile',
@@ -31,7 +32,8 @@ displayNameMap = new Map([
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
     public router: Router,
-    public breakpointObserver:BreakpointObserver
+    public breakpointObserver:BreakpointObserver,
+    public snackbar: MatSnackBar
   ) {
     breakpointObserver
       .observe([
@@ -88,7 +90,6 @@ displayNameMap = new Map([
     return this.fetchApiData.getUser(this.user.userName).subscribe((result) =>{
       this.showSpinner = false
       let date = new Date(result.birthday)
-      // date.toTimeString()
       this.user.userName = result.username,
       this.user.email = result.email,
       this.user.birthday = date.toLocaleDateString(),
@@ -98,9 +99,9 @@ displayNameMap = new Map([
 
   deleteFavoriteMovie(username:any, movieTitle:any){
     this.fetchApiData.deleteFavoriteMovie(username, movieTitle).subscribe((response)=>{
-      console.log(response)
+    }, () => {
       window.location.reload()
-    })
+      })
   }
 
   onResize(currentScreenSize: string): any{
