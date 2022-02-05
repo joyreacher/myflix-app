@@ -1,0 +1,12 @@
+<div style="position: relative">
+  <h1>Director:</h1>
+  <h2>{{this.data.director.Name}}</h2>
+  <h1>Bio:</h1>
+  <p>{{this.data.director.Bio}}</p>
+  <h1>Birth:</h1>
+  <h2>{{this.birth}}</h2>
+  <h1>Death:</h1>
+  <p>{{this.data.director.Death}}</p>
+  <h2 *ngIf="this.death">{{this.data.director.Death}}</h2>
+  
+</div>

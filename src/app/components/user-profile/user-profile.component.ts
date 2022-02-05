@@ -62,4 +62,11 @@ showSpinner = false
       this.user.favorite_movies = result.favorite_movies
     })
   }
+
+  deleteFavoriteMovie(username:any, movieTitle:any){
+    this.fetchApiData.deleteFavoriteMovie(username, movieTitle).subscribe((response)=>{
+      console.log(response)
+      window.location.reload()
+    })
+  }
 }

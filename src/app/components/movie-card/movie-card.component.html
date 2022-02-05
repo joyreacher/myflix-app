@@ -26,23 +26,40 @@
         <mat-card-actions>
           <button
             mat-button
+            (click)="openGenreDialog(movie.Genre)"
             color="primary"
           >
             Genre
           </button>
           <button
             mat-button
+            (click)="openDirectorDialog(movie.Director)"
             color="primary"
           >
             Director
           </button>
           <button
             mat-button
+            (click)="openSynopsisDialog(movie.Title, movie.Description, movie.Director)"
             color="primary"
           >
             Synopsis
           </button>
-          <mat-icon>favorite_border</mat-icon>
+          <button 
+            aria-label="fav"
+            (click)="handleFavorites(movie.Title, $event)"
+            >
+              <mat-icon 
+                *ngIf="movie.Favorite"
+                >
+                  favorite_fill
+                </mat-icon>
+              <mat-icon 
+                *ngIf="!movie.Favorite"
+                >
+                favorite_border
+              </mat-icon>
+          </button>
         </mat-card-actions>
       </div>
       <mat-card-footer class="movie-card--footer">
