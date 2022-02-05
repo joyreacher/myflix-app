@@ -25,7 +25,6 @@ export class UserUpdateFormComponent implements OnInit {
   }
 
   returnDate(dob:any = null):any{
-    console.log(dob)
     let day, month, year
     this.selected = new Date(this.selected)
     day = this.selected.getDate()
@@ -84,9 +83,7 @@ export class UserUpdateFormComponent implements OnInit {
       email: !this.updatedUserData.Email || this.updatedUserData.Email === '' ? this.user.email : this.updatedUserData.Email,
       birthday: !this.updatedUserData.Birthday || this.updatedUserData.Birthday === '' ? this.user.birthday :this.updatedUserData.Birthday
     }
-    if(this.returnDate()){
-      this.requestUpdate(user)
-    }
+    this.requestUpdate(user)
   }
 
   requestUpdate(user:any):any{
