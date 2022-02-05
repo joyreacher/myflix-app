@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators'
 import { FetchApiDataService } from 'src/app/services/fetch-api-data.service';
@@ -8,6 +8,7 @@ import {
 } from '@angular/cdk/layout';
 
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar'
 import { GenreModalComponent } from '../genre-modal/genre-modal.component';
 import { DirectorModalComponent } from '../director-modal/director-modal.component';
 import { SynopsisModalComponent } from '../synopsis-modal/synopsis-modal.component';
@@ -22,6 +23,8 @@ export class MovieCardComponent implements OnInit {
   movies: any = []
   showSpinner = false
   breakpoint:number
+  favorite:boolean
+  user:any
   displayNameMap = new Map([
     [Breakpoints.XSmall, 'XSmall'],
     [Breakpoints.Small, 'Small'],
@@ -32,7 +35,8 @@ export class MovieCardComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public fetchApiData: FetchApiDataService,
-    public breakpointObserver: BreakpointObserver
+    public breakpointObserver: BreakpointObserver,
+    public snackbar: MatSnackBar,
   ) {
     breakpointObserver
       .observe([
@@ -141,7 +145,7 @@ export class MovieCardComponent implements OnInit {
       width: '400px'
     })
   }
-  
+
   handleFavorites(title: string, event:any): any{
     let username = localStorage.getItem('user')
     const data = {
@@ -157,8 +161,45 @@ export class MovieCardComponent implements OnInit {
       return this.removeMovie(data)
     }
   }
+
+  addMovie(data:any):any{
     this.fetchApiData.addFavoriteMovie(data).subscribe((response) =>{
       console.log(response)
+      this.favorite = true
+      this.snackbar.open(
+        'Added to your favorites',
+        "OK", {
+          duration: 2000
+        }
+      )
+    }, (error) => {
+      console.log(error)
+      this.snackbar.open(
+        'Could not add to your favotires',
+        "OK", {
+          duration: 2000
+        }
+      )
+    })
+  }
+
+  removeMovie(data:any):any{
+    console.log(data)
+    this.fetchApiData.deleteFavoriteMovie(data.Username, data.Title).subscribe((response)=>{
+      window.location.reload()
+      this.snackbar.open(
+        `${data.Title} was removed from your favorites`,
+        "OK", {
+          duration: 2000
+        }
+      )
+    }, (error) =>{
+      this.snackbar.open(
+        `${data.Title} was removed`,
+        "OK", {
+          duration: 2000
+        }
+      )
     })
   }
 }
