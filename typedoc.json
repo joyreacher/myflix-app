@@ -1,0 +1,10 @@
+{
+  "entryPoints": [
+    "src/app/app.module.ts", 
+    "src/app/app-routing.module.ts",
+    "src/app/app.component.ts",
+    "src/app/services/fetch-api-data.service.ts",
+    "src/app/components/welcome-page/welcome-page.component.ts"
+    ],
+  "out":"docs"
+}
