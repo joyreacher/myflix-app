@@ -33,7 +33,16 @@ export class FetchApiDataService {
     }
   }
   /**
-   * 
+   * ## Registering a user
+   * @description All fields are required 
+   * ```
+   * userDetails:{
+      *Username: data.userName, 
+      *Password: data.password,
+      *Email: data.email, 
+      *Birthday: data.birthday, 
+    *}
+   *```
    * @param userDetails 
    * @returns 
    */
@@ -43,7 +52,8 @@ export class FetchApiDataService {
       .pipe(catchError(this.handleError))
   }
   /**
-   * 
+   * ## Login
+   * @description ```userDetails``` contain ```Username``` and ```Password``` values
    * @param userDetails 
    * @returns 
    */
@@ -54,7 +64,8 @@ export class FetchApiDataService {
   }
   
   /**
-   * @function getAllMovies
+   * ## Get all movies 
+   * @description Return all movies available from API
    * @returns 
    */
   public getAllMovies(): Observable<any> {
@@ -68,7 +79,8 @@ export class FetchApiDataService {
   }
   
   /**
-   * 
+   * ## Get single movie
+   * @description Returns a single movie resource by passing in a title
    * @param movieTitle 
    * @returns 
    */
@@ -79,7 +91,8 @@ export class FetchApiDataService {
   }
   
   /**
-   * 
+   * ## Get Director information
+   * @description Takes a directors name to return ```Name, Bio, Birth, Death```
    * @param directorName 
    * @returns 
    */
@@ -90,8 +103,9 @@ export class FetchApiDataService {
   }
   
   /**
-   * 
-   * @param genreName \
+   * ## Returns movies in a specific genre
+   * @description Pass in a genre name to return array of movies
+   * @param genreName
    * @returns 
    */
   public getGenre(genreName: any): Observable<any>{
@@ -102,7 +116,8 @@ export class FetchApiDataService {
   }
   
   /**
-   * 
+   * ## Get User
+   * @description Takes a username and returns user object
    * @param userName 
    * @returns 
    */
@@ -118,7 +133,8 @@ export class FetchApiDataService {
   }
   
   /**
-   * 
+   * ## Get a user's favorite movies
+   * @description Returns the user object containing favorite_movies array
    * @param userName
    * @returns 
    */
@@ -130,9 +146,15 @@ export class FetchApiDataService {
   }
   
   /**
-   * 
-   * @param userName 
-   * @param movieData 
+   * ## Add a favorite movie to a user
+   * @description Adds a movie resource to a specific user
+   * ```
+   * data:{
+      *Username: data.userName, 
+      *Title: data.Title,
+    *}
+   *```
+   * @param data 
    * @returns 
    */
   public addFavoriteMovie(data: any): Observable<any>{
@@ -147,8 +169,18 @@ export class FetchApiDataService {
   }
   
   /**
-   * 
-   * @param user
+   * ## Make Changes to user profile
+   * * {@link editUser}
+   * @description Pass an object containing key value pairs for ```Username, Password, Email, Birthday```
+   * ```
+   * user:{
+      *Username: user.userName, 
+      *Password: user.Password,
+      *Email: user.Email,
+      *Birthday: user.birthday
+    *}
+   *```
+   * @typeParam user is an object
    * @returns 
    */
   public editUser(user: any): Observable<any>{
@@ -169,8 +201,17 @@ export class FetchApiDataService {
   }
   
   /**
+   * ## Deleting a user
+   * @description deleteUser takes a single object containing Username and Email key value pairs
    * 
-   * @param userName 
+   * ```
+   * user:{
+      *Username: user.userName, 
+      *Email: user.Email,
+    *}
+   *```
+   * @param user.Username:string
+   * @param user.Email:string
    * @returns 
    */
   public deleteUser(user: any): Observable<any>{
@@ -184,9 +225,10 @@ export class FetchApiDataService {
   }
   
   /**
-   * 
-   * @param userName 
-   * @param movieTitle 
+   * ## Delete a user's favorite movie
+   * @description Removes a movie resource from a users favorite_movies array
+   * @param userName
+   * @param movieTitle
    * @returns 
    */
   public deleteFavoriteMovie(userName: any, movieTitle: any): Observable<any>{

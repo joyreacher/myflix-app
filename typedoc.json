@@ -1,10 +1,20 @@
 {
   "entryPoints": [
+    "src/main.ts", 
     "src/app/app.module.ts", 
     "src/app/app-routing.module.ts",
     "src/app/app.component.ts",
     "src/app/services/fetch-api-data.service.ts",
-    "src/app/components/welcome-page/welcome-page.component.ts"
+    "src/app/components/welcome-page/welcome-page.component.ts",
+    "src/app/components/user-register-form/user-register-form.component.ts",
+    "src/app/components/user-login-form/user-login-form.component.ts",
+    "src/app/components/navbar/navbar.component.ts",
+    "src/app/components/movie-card/movie-card.component.ts",
+    "src/app/components/genre-modal/genre-modal.component.ts",
+    "src/app/pages/main-page/main-page.component.ts",
+    "src/app/components/user-update-form/user-update-form.component.ts",
+    "src/app/components/user-delete-form/user-delete-form.component.ts",
+    "src/app/components/user-profile/user-profile.component.ts"
     ],
   "out":"docs"
 }

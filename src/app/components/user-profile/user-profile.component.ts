@@ -16,11 +16,36 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
+  /**
+ * ## User object used to display user data in template
+ */
+  user = {
+    userName: localStorage.getItem('user'),
+    token: localStorage.getItem('token'),
+    email:'',
+    birthday: '',
+    favorite_movies: []
+  }
+  /** 
+  * ## number used to increase row height on handheld devices 
+  * 
+  */
   rows:number
 destroyed = new Subject<void>()
+  /** ## Material UI [progress spinner](https://material.angular.io/components/progress-spinner/overview) */
 showSpinner = false
+/**
+* ## Screen size as string value
+* 
+ */
 currentScreenSize: string
+/**
+  ## Number used to determine Breakpoints
+ */
 breakpoint: number
+/**
+* ## Name map used to map breakpoints to string value
+ */
 displayNameMap = new Map([
   [Breakpoints.XSmall, 'XSmall'],
   [Breakpoints.Small, 'Small'],
@@ -53,38 +78,46 @@ displayNameMap = new Map([
         }
       })
   }
-
+  /**
+   * # When this component is loaded
+   * {@linkcode getUserCredentials} to retrieve token
+   * {@linkcode getUserInfo} to retrieve data from database
+   * 
+   */
   ngOnInit(): void {
     this.getUserCredentials()
     this.getUserInfo()
   }
-
+  /**
+   * ## Authenticate using JWT
+   * @returns token string
+   */
   getUserCredentials(): any{
     if(!localStorage.getItem('token')){
       this.router.navigate(['welcome'])
     }
     return localStorage.getItem('user');
   }
-
+  /**
+   * ## Trigger MatDialog to display {@linkcode UserUpdateFormComponent}
+   */
   openUpdateUserDialog(): void{
     this.dialog.open(UserUpdateFormComponent, {
       width: '350px'
     })
   }
-
+  /**
+   * ## Trigger MatDialog to display {@linkcode UserDeleteFormComponent}
+   */
   openDeleteUserDialog(): void{
     this.dialog.open(UserDeleteFormComponent, {
       width: '350px'
     })
   }
-
-  user = {
-    userName: localStorage.getItem('user'),
-    token: localStorage.getItem('token'),
-    email:'',
-    birthday: '',
-    favorite_movies: []
-  }
+  /**
+   * ## User info from DB
+   * @returns User Object | Stored in {@linkcode user}
+   */
   getUserInfo(): any{
     this.showSpinner = true
     return this.fetchApiData.getUser(this.user.userName).subscribe((result) =>{
@@ -96,14 +129,21 @@ displayNameMap = new Map([
       this.user.favorite_movies = result.favorite_movies
     })
   }
-
+  /**
+   * ## Remove a user's favorite movie
+   * @param username is the string value of the current logged in user
+   * @param movieTitle is the string value of the movie title to remove
+   */
   deleteFavoriteMovie(username:any, movieTitle:any){
     this.fetchApiData.deleteFavoriteMovie(username, movieTitle).subscribe((response)=>{
     }, () => {
       window.location.reload()
       })
   }
-
+  /**
+   * ## Runs whenever the viewport has changed
+   * @param currentScreenSize is the string value used to determine number of {@link rows} and {@link breakpoint} to use
+   */
   onResize(currentScreenSize: string): any{
     switch(currentScreenSize){
       case 'XSmall':

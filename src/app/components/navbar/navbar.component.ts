@@ -12,17 +12,29 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  /**
+   * ## Router helper
+   * @description Used to route to various views 
+   * @param page 
+   * @returns 
+   */
   route(page: string): any{
     return this.router.navigate([`${page}`])
   }
-
+  /**
+   * ## Signing out
+   * @description Used to log a user out using the 'signout' button in navigation
+   */
   signOut(){
     localStorage.removeItem('token')
     localStorage.removeItem('user')
-    this.router.navigate(['welcome'])
+    this.route('welcome')
   }
-
+  /**
+   * ## Check if user is logged in
+   * @description Conditional logic to display appropriate navbar
+   * @returns true if token is set in ```localStorage```
+   */
   isUserLoggedIn(): any{
     if(!localStorage.getItem('token')){
       return false

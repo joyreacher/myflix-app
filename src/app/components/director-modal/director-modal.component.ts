@@ -11,12 +11,15 @@ export interface DialogData {
   styleUrls: ['./director-modal.component.scss']
 })
 export class DirectorModalComponent implements OnInit {
+  /** ## birthdate String value passed from MovieCard */
   birth: any
   death:any
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
-
+  /**
+   * ## Format the birth/death date values to display only year value
+   */
   ngOnInit(): void {
     this.birth = new Date(this.data.director.Birth)
     this.death = new Date(this.data.director.Death)
