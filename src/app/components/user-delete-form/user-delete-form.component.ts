@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./user-delete-form.component.scss']
 })
 export class UserDeleteFormComponent implements OnInit {
+  /** ## Data to be sent to ```deleteUser()``` */
   @Input() userData = { Username: '', Email:''}
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -20,7 +21,12 @@ export class UserDeleteFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  /**
+   * ## Remove the user
+   * @description The user is required to input their email address to delete their profile
+   * @param username 
+   * @param email 
+   */
   deleteUser(username:string, email:string):any{
     this.fetchApiData.deleteUser({"Username":localStorage.getItem('user'), "Email": email}).subscribe((response)=>{
       this.dialog.closeAll()

@@ -12,6 +12,7 @@ import { FetchApiDataService } from '../../services/fetch-api-data.service'
   styleUrls: ['./user-login-form.component.scss']
 })
 export class UserLoginFormComponent implements OnInit {
+  /** Form values */
   @Input() userData = { Username: '', Password: '' }
   showSpinner = false
   constructor(
@@ -23,6 +24,9 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  /**
+   * ## API Call to {@link userlogin}
+   */
   loginUser(): void{
     this.showSpinner = true
     this.fetchApiData.userLogin(this.userData).subscribe((result) => {

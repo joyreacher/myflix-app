@@ -18,28 +18,38 @@ export class WelcomePageComponent implements OnInit {
     public router: Router
   ) { }
 
+  /**
+   * ## Run on init
+   * @description {@link routeToHomeView} checks localStorage for token 
+   */
   ngOnInit(): void {
     this.routeToHomeView()
   }
-  
+  /**
+   * ## Open dialog to register new users
+   *@description Triggers the MatDialog to open and display the {@link UserRegisterFormComponent}
+   * @returns
+   */
   openUserRegistrationDialog(): void {
     this.dialog.open(UserRegisterFormComponent, {
       width: '300px'
     })
   }
-
+  /**
+   * ## Open dialog to Login
+   * @description Triggers the MatDialog to open and display the {@link UserLoginFormComponent}
+   */
   openUserLoginDialog(): void{
     this.dialog.open(UserLoginFormComponent, {
       width: '300px'
     })
   }
-  
-  openMoviesDialog(): void {
-    this.dialog.open(MovieCardComponent, {
-      width: '500px'
-    })
-  }
-
+  /**
+   * ## Check if user is logged in 
+   * @description Check ```localStorage``` for token value used for authorization
+   * If a token exists route to home page
+   * Else keep on welcome page
+   */
   routeToHomeView(): void{
     if(localStorage.getItem('token')){
       this.router.navigate(['home'])

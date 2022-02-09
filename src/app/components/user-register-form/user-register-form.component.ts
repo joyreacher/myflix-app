@@ -10,7 +10,9 @@ import { FetchApiDataService } from '../../services/fetch-api-data.service'
   styleUrls: ['./user-register-form.component.scss']
 })
 export class UserRegisterFormComponent implements OnInit {
+  /** ## Form values */
   @Input() userData = { Username: '', Password: '', Email: '', Birthday: '' }
+  /** ## DatePicker value */
   selected: Date | '';
   showSpinner = false
   constructor(
@@ -22,7 +24,10 @@ export class UserRegisterFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  /**
+   * ## Registering a user
+   * @description Takes the userData object to send post request to {@link userRegistration}
+   */
   registerUser(): void {
     this.showSpinner = true
     this.fetchApiData.userRegistration(this.userData).subscribe((result) => {
@@ -44,7 +49,10 @@ export class UserRegisterFormComponent implements OnInit {
       })
     })
   }
-
+  /**
+   * ## Format date values
+   * @returns userData.Birthday as a string value in the form of m/d/yyyy
+   */
   returnDate(): any{
     let day, month, year
     this.selected = new Date(this.selected)
